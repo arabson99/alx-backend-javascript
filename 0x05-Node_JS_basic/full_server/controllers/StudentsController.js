@@ -23,15 +23,14 @@ export default class StudentsController {
 
     if (major !== 'CS' && major !== 'SWE') {
       response.status(500).send('Major parameter must be CS or SWE');
-      return;
-    }
-
-    try {
-      const data = await readDatabase(process.argv[2]);
-      const students = data[major] || [];
-      response.status(200).send(`List: ${students.join(', ')}`);
-    } catch (error) {
-      response.status(500).send('Cannot load the databse');
+    } else {
+      try {
+        const data = await readDatabase(process.argv[2]);
+        const students = data[major] || [];
+        response.status(200).send(`List: ${students.join(', ')}`);
+      } catch (error) {
+        response.status(500).send('Cannot load the databse');
+      }
     }
   }
 }
