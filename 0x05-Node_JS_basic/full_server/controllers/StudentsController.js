@@ -29,7 +29,7 @@ export default class StudentsController {
         const students = data[major] || [];
         response.status(200).send(`List: ${students.join(', ')}`);
       } catch (error) {
-        response.status(500).send('Cannot load the databse');
+        response.status(500).send('Cannot load the database');
       }
     }
   }
